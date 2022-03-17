@@ -7,7 +7,7 @@ Author: Draghici Andreea
 '''
 
 
-def regex() :
+def regex():
     reg = re.compile(
         r'^(?:http|ftp)s?://'  # http:// or https://
         r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'  # domain
@@ -17,8 +17,9 @@ def regex() :
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
     string = "https://pytutorial.com"
+    # re.match()=looks for a regex match at the beginning of a string
     print(re.match(reg, string) is not None)
 
 
-if __name__ == '__main__' :
+if __name__ == '__main__':
     regex()
