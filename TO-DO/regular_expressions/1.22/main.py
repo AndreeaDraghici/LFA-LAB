@@ -1,5 +1,11 @@
 import re
 
+'''
+Checking if a string is a URL using Regular Expression (Regex).
+Author: Draghici Andreea
+17/03/2022
+'''
+
 
 def regex() :
     reg = re.compile(
