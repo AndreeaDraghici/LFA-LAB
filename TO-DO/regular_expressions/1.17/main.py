@@ -7,7 +7,7 @@ Author: Draghici Andreea
 '''
 
 
-def regex():
+def isValidEMAIL():
     string = 'draghici108@gmail.com'
     # re.findall()=returns a list of all regex matches in a string
     emails = re.findall(r'[\w\.-]+@[\w\.-]+', string)
@@ -16,4 +16,4 @@ def regex():
 
 
 if __name__ == '__main__':
-    regex()
+    isValidEMAIL()
