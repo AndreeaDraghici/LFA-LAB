@@ -16,14 +16,14 @@ def isPresent(string):
     # compile string pattern to re.Pattern object
     pattern = re.compile(regex)
 
-    if (string ==None):
-        print("Not contains")
+    if None is not string:
+        if not re.search(pattern, string):
+            print("Not contains")
+        else:
+            print("Yes, contains")
         return
 
-    if (re.search(pattern, string)):
-        print("Yes, contains")
-    else:
-        print("Not contains")
+    print("Not contains")
 
 
 if __name__ == '__main__' :
