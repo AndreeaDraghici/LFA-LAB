@@ -6,7 +6,8 @@ Author: Draghici Andreea
 18/03/2022
 '''
 
-def isPresent(string):
+
+def isPresent(string) :
     # regex to check if a string
     # contains uppercase, lowercase
     # special character & numeric value
@@ -16,10 +17,10 @@ def isPresent(string):
     # compile string pattern to re.Pattern object
     pattern = re.compile(regex)
 
-    if None is not string:
-        if not re.search(pattern, string):
+    if None is not string :
+        if not re.search(pattern, string) :
             print("Not contains")
-        else:
+        else :
             print("Yes, contains")
         return
 
