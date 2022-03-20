@@ -16,9 +16,13 @@ Tema 1.2. Write an application that will extract sub-strings from source string,
 
   The app should:
         overview ok 1p
+        
         Build/Work 1p
+        
     throw/show errors in case the pattern has errors, 3p
+    
     for Homework. 1.2, display a list of matches 2p
+    
     inform user that there is no match, for Homework. 1.2, display "no result" message 2p
     
 ----
