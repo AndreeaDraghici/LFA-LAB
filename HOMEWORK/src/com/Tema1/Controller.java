@@ -1,15 +1,10 @@
 package com.Tema1;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 /**
  * author: andreea draghici
  * 2022
@@ -26,12 +21,16 @@ public class Controller {
     private JRadioButton caseSensitive;
     private boolean caseChoice;
 
-    /** Create the application.*/
+    /**
+     * Create the application.
+     */
     public Controller() {
         initialize();
     }
 
-    /** Initialize the contents of the frame.*/
+    /**
+     * Initialize the contents of the frame.
+     */
     private void initialize() {
 
         /** create a new frame */
@@ -75,12 +74,7 @@ public class Controller {
 
         caseSensitive = new JRadioButton("Case sensitive");
         caseSensitive.addActionListener(arg0 -> {
-            if (!caseSensitive.isSelected()){
-                caseChoice = true;
-            }
-            else {
-                caseChoice = false;
-            }
+            caseChoice = !caseSensitive.isSelected();
         });
         caseSensitive.setBounds(130, 220, 150, 30);
         caseSensitive.setSelected(true);
@@ -92,64 +86,68 @@ public class Controller {
 
             regex = regularExpression.getText();
             string = testString.getText();
+            try {
+                if (!regex.isEmpty() && !string.isEmpty()) {
 
-            if (!regex.isEmpty() && !string.isEmpty()) {
+                    /** Defines a pattern */
+                    final Pattern pattern;
 
-                /** Defines a pattern */
-                final Pattern pattern;
-
-                /**
-                 * if you need to match a text against a regular expression pattern more than one time,
-                 * you need to create a Pattern instance using the Pattern.compile() method
-                 *
-                 * Case Insensitive enables case-insensitive matching, the case of letters will be ignored when performing a search
-                 *
-                 * In multiline mode the expressions ^ and $ match just after or just before,
-                 * respectively, a line terminator or the end of the input sequence
-                 *
-                 **/
-                if (caseChoice) {
-                    pattern = Pattern.compile(regex, Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
-                } else {
-                    pattern = Pattern.compile(regex, Pattern.MULTILINE);
-                }
-
-                /**
-                 * Used to search for the pattern
-                 *
-                 * matcher() method is used to search for the pattern in a string
-                 *
-                 * find() method returns true if the pattern was found in the string and false if it was not found
-                 *
-                 * */
-                final Matcher matcher = pattern.matcher(string);
-                matchInformation.setText(null);
-
-                if (!matcher.find()) {
-                    matchInformation.setForeground(Color.RED);
-                    matchInformation.append("\n\nYour regular expression does not match the subject string.\n\n");
-                } else {
-                    matchInformation.setForeground(Color.BLUE);
                     /**
-                     * If multiple matches can be found in the text, the find() method will find the first,
-                     * and then for each subsequent call to find() it will move to the next match
+                     * if you need to match a text against a regular expression pattern more than one time,
+                     * you need to create a Pattern instance using the Pattern.compile() method
                      *
-                     * The methods start() and end() will give the indexes into the text where the found match starts and ends
+                     * Case Insensitive enables case-insensitive matching, the case of letters will be ignored when performing a search
+                     *
+                     * In multiline mode the expressions ^ and $ match just after or just before,
+                     * respectively, a line terminator or the end of the input sequence
+                     *
+                     **/
+
+                    if (caseChoice) {
+                        pattern = Pattern.compile(regex, Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
+                    } else {
+                        pattern = Pattern.compile(regex, Pattern.MULTILINE);
+                    }
+
+                    /**
+                     * Used to search for the pattern
+                     *
+                     * matcher() method is used to search for the pattern in a string
+                     *
+                     * find() method returns true if the pattern was found in the string and false if it was not found
                      *
                      * */
-                    matchInformation.append("\nMatch 1 " + matcher.start() + "-" + matcher.end() + " " + matcher.group(0) + "\n");
-                    int i = 2;
-                    while (matcher.find()) {
-                        matchInformation.append("\nMatch " + i + matcher.start() + "-" + matcher.end() + " " + matcher.group(0) + "\n");
-                        i = i + 1;
-                    }
-                    if (i-- == 1) {
-                        matchInformation.append("\n   " + i + " match ");
-                    } else {
-                        matchInformation.append("\n   " + i + " matches ");
-                    }
-                }
+                    final Matcher matcher = pattern.matcher(string);
+                    matchInformation.setText(null);
 
+                    if (!matcher.find()) {
+                        matchInformation.setForeground(Color.RED);
+                        matchInformation.append("\n\nYour regular expression does not match the subject string.\n\n");
+                    } else {
+                        matchInformation.setForeground(Color.BLUE);
+                        /**
+                         * If multiple matches can be found in the text, the find() method will find the first,
+                         * and then for each subsequent call to find() it will move to the next match
+                         *
+                         * The methods start() and end() will give the indexes into the text where the found match starts and ends
+                         *
+                         * */
+                        matchInformation.append("\nMatch 1 " + matcher.start() + "-" + matcher.end() + " " + matcher.group(0) + "\n");
+                        int i = 2;
+                        while (matcher.find()) {
+                            matchInformation.append("\nMatch " + i + matcher.start() + "-" + matcher.end() + " " + matcher.group(0) + "\n");
+                            i = i + 1;
+                        }
+                        if (i-- == 1) {
+                            matchInformation.append("\n   " + i + " match ");
+                        } else {
+                            matchInformation.append("\n   " + i + " matches ");
+                        }
+                    }
+
+                }
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(null, "Error: " + exception.getLocalizedMessage());
             }
         });
 
