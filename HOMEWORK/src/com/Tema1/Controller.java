@@ -10,7 +10,11 @@ import javax.swing.JTextArea;
 import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * author: andreea draghici
+ * 2022
+ * Regex , LFA LAB
+ */
 public class Controller {
 
     public JFrame frame;
@@ -22,14 +26,20 @@ public class Controller {
     private JRadioButton caseSensitive;
     private boolean caseChoice;
 
-
+    /**
+     * Create the application.
+     */
     public Controller() {
         initialize();
     }
 
+    /**
+     * Initialize the contents of the frame.
+     */
     private void initialize() {
 
         frame = new JFrame("Regular Expression");
+        frame.getContentPane().setBackground(new Color(241, 202, 144));
         frame.setBounds(600, 250, 750, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
@@ -65,9 +75,9 @@ public class Controller {
 
         caseSensitive = new JRadioButton("Case sensitive");
         caseSensitive.addActionListener(arg0 -> caseChoice = !caseSensitive.isSelected());
-
         caseSensitive.setBounds(130, 220, 150, 30);
         caseSensitive.setSelected(true);
+        caseSensitive.setBackground(new Color(241, 202, 144));
         frame.add(caseSensitive);
 
         JButton btnSubmit = new JButton("Extract the pattern");
