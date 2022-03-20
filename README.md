@@ -4,6 +4,8 @@ Formal Languages and Automata
 ---
 - In the TO-DO package are the solutions to some tasks proposed in the laboratory platform.
 - Python was currently used as the  programming language.
+- In the HOMEWORK package are the solutions to homework tasks proposed in the laboratory platform.
+- Java was currently used as the  programming language.
 ---
 Useful Links 
 --
