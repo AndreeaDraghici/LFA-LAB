@@ -15,7 +15,7 @@ public class Controller {
 
     private JFrame frame;
     private JTextField regularExpression;
-    private JTextField testString;
+    private JTextArea testString;
     private JTextArea matchInformation;
     private JRadioButton caseSensitive;
     private boolean caseChoice;
@@ -42,7 +42,7 @@ public class Controller {
 
         /* create a new frame */
         setFrame(new JFrame("Regular Expression"));
-        getFrame().getContentPane().setBackground(new Color(241, 202, 144));
+        getFrame().getContentPane().setBackground(new Color(217, 130, 15));
         getFrame().setBounds(600, 250, 750, 400);
         getFrame().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         getFrame().getContentPane().setLayout(null);
@@ -62,7 +62,7 @@ public class Controller {
         labelTestString.setBounds(37, 120, 300, 36);
         getFrame().add(labelTestString);
 
-        testString = new JTextField();
+        testString = new JTextArea();
         testString.setBounds(37, 155, 300, 65);
         getFrame().getContentPane().add(testString);
         testString.setColumns(10);
@@ -89,7 +89,7 @@ public class Controller {
         });
         caseSensitive.setBounds(130, 220, 150, 30);
         caseSensitive.setSelected(true);
-        caseSensitive.setBackground(new Color(241, 202, 144));
+        caseSensitive.setBackground(new Color(217, 130, 15));
         getFrame().add(caseSensitive);
 
         JButton btnSubmit = new JButton("Extract the pattern");
@@ -116,12 +116,9 @@ public class Controller {
                 /*
                   if you need to match a text against a regular expression pattern more than one time,
                   you need to create a Pattern instance using the Pattern.compile() method
-
                   Case Insensitive enables case-insensitive matching, the case of letters will be ignored when performing a search
-
                   In multiline mode the expressions ^ and $ match just after or just before,
                   respectively, a line terminator or the end of the input sequence
-
                  */
                 if (caseChoice) {
                     pattern = Pattern.compile(regex, Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
@@ -130,42 +127,33 @@ public class Controller {
                 }
                 /*
                   Used to search for the pattern
-
                   matcher() method is used to search for the pattern in a string
-
                   find() method returns true if the pattern was found in the string and false if it was not found
-
                   */
                 final Matcher matcher = pattern.matcher(str);
                 matchInformation.setText(null);
-                try {
-                    if (!matcher.find()) {
-                        matchInformation.setForeground(Color.RED);
-                        matchInformation.append("\n\nYour regular expression does not match the subject string.\n\n");
-                    } else {
-                        matchInformation.setForeground(Color.BLUE);
+
+                if (!matcher.find()) {
+                    matchInformation.setForeground(Color.RED);
+                    matchInformation.append("\n\nYour regular expression does not match the subject string.\n\n");
+                } else {
+                    matchInformation.setForeground(Color.BLUE);
                         /*
                           If multiple matches can be found in the text, the find() method will find the first,
                           and then for each subsequent call to find() it will move to the next match
-
                           The methods start() and end() will give the indexes into the text where the found match starts and ends
-
                           */
-                        matchInformation.append("\nMatch 1 " + matcher.start() + "-" + matcher.end() + " " + matcher.group(0) + "\n");
-                        int value = 2;
-                        while (matcher.find()) {
-                            matchInformation.append("\nMatch  " + value + " " + matcher.start() + "-" + matcher.end() + " " + matcher.group(0) + "\n");
-                            value = value + 1;
-                        }
-                        if (value == 1) {
-                            matchInformation.append("\n " + value + " match ");
-                        } else {
-                            matchInformation.append("\n " + value + " matches ");
-                        }
-                        value--;
+                    matchInformation.append("\nMatch 1 " + matcher.start() + "-" + matcher.end() + " " + matcher.group(0) + "\n");
+                    int value = 2;
+                    while (matcher.find()) {
+                        matchInformation.append("\nMatch  " + value + " " + matcher.start() + "-" + matcher.end() + " " + matcher.group(0) + "\n");
+                        value = value + 1;
                     }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+                    if (value-- == 1) {
+                        matchInformation.append("\n " + value + " match ");
+                    } else {
+                        matchInformation.append("\n " + value + " matches ");
+                    }
                 }
             }
         } catch (Exception exception) {
