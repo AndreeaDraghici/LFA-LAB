@@ -17,8 +17,6 @@ public class Controller {
     private JTextField regularExpression;
     private JTextArea testString;
     private JTextArea matchInformation;
-    private JRadioButton caseSensitive;
-    private boolean caseChoice;
 
     public JFrame getFrame() {
         return frame;
@@ -79,19 +77,6 @@ public class Controller {
         scroll.setBounds(350, 85, 356, 206);
         getFrame().getContentPane().add(scroll);
 
-        caseSensitive = new JRadioButton("Case sensitive");
-        caseSensitive.addActionListener(arg0 -> {
-            if (caseSensitive.isSelected()) {
-                caseChoice = false;
-            } else {
-                caseChoice = true;
-            }
-        });
-        caseSensitive.setBounds(130, 220, 150, 30);
-        caseSensitive.setSelected(true);
-        caseSensitive.setBackground(new Color(217, 130, 15));
-        getFrame().add(caseSensitive);
-
         JButton btnSubmit = new JButton("Extract the pattern");
         btnSubmit.addActionListener(this::actionButtonSubmit);
 
@@ -119,12 +104,9 @@ public class Controller {
                   Case Insensitive enables case-insensitive matching, the case of letters will be ignored when performing a search
                   In multiline mode the expressions ^ and $ match just after or just before,
                   respectively, a line terminator or the end of the input sequence
-                 */
-                if (caseChoice) {
-                    pattern = Pattern.compile(regex, Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
-                } else {
-                    pattern = Pattern.compile(regex, Pattern.MULTILINE);
-                }
+                */
+
+                pattern = Pattern.compile(regex, Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
                 /*
                   Used to search for the pattern
                   matcher() method is used to search for the pattern in a string
