@@ -37,20 +37,20 @@ public class Graph {
 
         Vertex newVertex = new Vertex(key);
 
-        if (this.head != null) {
-            if (this.searchVertex(key) != null) {
+        if (this.head == null) {
+            newVertex.setX(X - SIZE / 2);
+            newVertex.setY(Y - SIZE / 2);
+            newVertex.setZ(SIZE);
+        } else {
+            if (this.searchVertex(key) == null) {
+                newVertex.setX(X - SIZE / 2);
+                newVertex.setY(Y - SIZE / 2);
+                newVertex.setZ(SIZE);
+                newVertex.setNextVertex(this.head);
+            } else {
                 return true;
             }
-            newVertex.setX(X - SIZE / 2);
-            newVertex.setY(Y - SIZE / 2);
-            newVertex.setZ(SIZE);
 
-            newVertex.setNext(this.head);
-
-        } else {
-            newVertex.setX(X - SIZE / 2);
-            newVertex.setY(Y - SIZE / 2);
-            newVertex.setZ(SIZE);
         }
         this.head = newVertex;
         this.vertexMap.put(newVertex.getKey(), newVertex);
@@ -79,7 +79,7 @@ public class Graph {
                         + firstVertexKey + "!", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            adjacentIterator = adjacentIterator.getNext();
+            adjacentIterator = adjacentIterator.getNextVertex();
         }
 
         if (vertex != null) {
@@ -99,17 +99,17 @@ public class Graph {
                                     + secondVertexKey + "!", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
-                        adjacentIterator = adjacentIterator.getNext();
+                        adjacentIterator = adjacentIterator.getNextVertex();
                     }
                     newVertex.setX(x);
                     newVertex.setY(y);
                     newVertex.setZ(SIZE);
 
                     Vertex adjacentVertex = vertex.getAdjacentVertex();
-                    while (adjacentVertex.getNext() != null) {
-                        adjacentVertex = adjacentVertex.getNext();
+                    while (adjacentVertex.getNextVertex() != null) {
+                        adjacentVertex = adjacentVertex.getNextVertex();
                     }
-                    adjacentVertex.setNext(newVertex);
+                    adjacentVertex.setNextVertex(newVertex);
                 } else {
                     JOptionPane.showMessageDialog(null, " There already exists an edge between " + firstVertexKey + " and "
                             + secondVertexKey + "!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -126,7 +126,7 @@ public class Graph {
     public void deleteVertex(String deletedVertexKey) {
         if (this.head.getKey() == deletedVertexKey) {
             this.head.setAdjacentVertex(null);
-            this.head = this.head.getNext();
+            this.head = this.head.getNextVertex();
         } else {
             Vertex deletedVertex = this.searchVertex(deletedVertexKey);
             deletedVertex.setAdjacentVertex(null);
@@ -134,9 +134,9 @@ public class Graph {
             Vertex prev = null;
             while (temp != null && temp.getKey() != deletedVertexKey) {
                 prev = temp;
-                temp = temp.getNext();
+                temp = temp.getNextVertex();
             }
-            prev.setNext(temp.getNext());
+            prev.setNextVertex(temp.getNextVertex());
             System.gc();
         }
         this.vertexMap.remove(deletedVertexKey);
