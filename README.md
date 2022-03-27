@@ -25,7 +25,19 @@ Tema 1.2. Write an application that will extract sub-strings from source string,
   for Homework. 1.2, display a list of matches 2p
     
   inform user that there is no match, for Homework. 1.2, display "no result" message 2p
-    
+
+-----
+Tema 2.
+-----
+Scrieti o aplicatie desktop, mobile sau web care sa permita editarea unui graf, a nodurilor si muchiilor aferente. Fiecare nod si muchie va avea posibilitatea de a i se atasa o cheie si valoare.
+Tehnologia este la alegerea Dvs.
+Operatiile cerute sunt:
+    Reprezentarea grafica a grafului 2p
+        Adaugarea de noduri/muchii cu cheile/valorile atasate 2p
+        editarea cheilor/valorilor pentru noduri/muchii 2p
+        stergerea nodurilor/muchiilor 1p
+        mutarea nodurilor pe ecran. 2p
+
 ----
 Useful Links 
 --
