@@ -1,7 +1,11 @@
 package com.Tema2.model;
 
 import java.awt.Color;
-
+/**
+ * author: andreea draghici
+ * 2022
+ * LFA LAB
+ */
 public class Vertex {
 
     private String key;
