@@ -13,7 +13,11 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
+/**
+ * author: andreea draghici
+ * 2022
+ * LFA LAB
+ */
 
 public class View extends JFrame implements ActionListener {
 
