@@ -16,6 +16,12 @@ import javax.swing.JPanel;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
 
+/**
+ * author: andreea draghici
+ * 2022
+ * LFA LAB
+ */
+
 public class Draw extends JPanel implements MouseListener, MouseMotionListener {
 
     @Serial
