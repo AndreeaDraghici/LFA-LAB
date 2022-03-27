@@ -8,21 +8,18 @@ public class Vertex {
     private String edgeKey;
     private String adjacentVertexKey;
     private Vertex adjacentVertex;
-    private Vertex next;
-
-    private final boolean dragging;
-    protected int x;
-    protected int y;
-    protected int z;
+    private Vertex nextVertex;
+    protected int xCoord;
+    protected int yCoord;
+    protected int zCoord;
     Color color;
 
     public Vertex(String key) {
 
         this.key = key;
         this.edgeKey = "";
-        this.next = null;
+        this.nextVertex = null;
         this.adjacentVertex = null;
-        this.dragging = false;
         color = new Color(255, 153, 0);
     }
 
@@ -30,8 +27,8 @@ public class Vertex {
         return key;
     }
 
-    public Vertex getNext() {
-        return this.next;
+    public Vertex getNextVertex() {
+        return this.nextVertex;
     }
 
     public Vertex getAdjacentVertex() {
@@ -43,16 +40,16 @@ public class Vertex {
     }
 
 
-    public int getX() {
-        return x;
+    public int getxCoord() {
+        return xCoord;
     }
 
-    public int getY() {
-        return y;
+    public int getyCoord() {
+        return yCoord;
     }
 
-    public int getZ() {
-        return z;
+    public int getzCoord() {
+        return zCoord;
     }
 
     public Color getColor() {
@@ -60,24 +57,24 @@ public class Vertex {
     }
 
 
-    public void setX(int x) {
-        this.x = x;
+    public void setX(int xCoord) {
+        this.xCoord = xCoord;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setY(int yCoord) {
+        this.yCoord = yCoord;
     }
 
-    public void setZ(int z) {
-        this.z = z;
+    public void setZ(int zCoord) {
+        this.zCoord = zCoord;
     }
 
     public void setColor(Color color) {
         this.color = color;
     }
 
-    public void setNext(Vertex next) {
-        this.next = next;
+    public void setNextVertex(Vertex nextVertex) {
+        this.nextVertex = nextVertex;
     }
 
     public void setAdjacentVertex(Vertex vertex) {
