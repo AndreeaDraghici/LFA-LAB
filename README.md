@@ -55,6 +55,7 @@ Useful Links
 3. https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285
 4. https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html
 5. https://www.javatpoint.com/java-swing
+6. https://jgraph.github.io/mxgraph/docs/manual_javavis.html
 ---
 
 - Testing:
