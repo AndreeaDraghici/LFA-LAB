@@ -6,7 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
-
+/**
+ * author: andreea draghici
+ * 2022
+ * LFA LAB
+ */
 public class Graph {
 
     private Vertex head;
